@@ -73,6 +73,14 @@ class FormContainer extends Component {
 
             let data = await response.json();
             this.setState({
+                nombre: "",
+                nombreValidate: false,
+                telefono: "",
+                telefonoValidate: false,
+                correo: "",
+                correoValidate: false,
+                rut: "",
+                rutValidate: false,
                 alerta: {
                     show: true,
                     msj: data.msj,
@@ -81,9 +89,14 @@ class FormContainer extends Component {
             });
         } else {
             this.setState({
-                nombre: '',
-                telefono: '',
-                correo: '',
+                nombre: "",
+                nombreValidate: false,
+                telefono: "",
+                telefonoValidate: false,
+                correo: "",
+                correoValidate: false,
+                rut: "",
+                rutValidate: false,
                 alerta: {
                     show: true,
                     msj: 'Existen campos que no cumple con lo requerido, favor seguir los Ej.',
