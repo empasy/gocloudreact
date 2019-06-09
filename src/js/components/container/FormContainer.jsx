@@ -52,7 +52,7 @@ class FormContainer extends Component {
         event.preventDefault();
 
         if (this.requiredFields()) {
-            let response = await fetch('http://localhost:3000/landing/subscriptions',{
+            let response = await fetch('landing/subscriptions',{
                 method: 'POST',
                 body: JSON.stringify({
                     nombre: this.state.nombre,
