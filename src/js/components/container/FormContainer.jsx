@@ -23,9 +23,13 @@ class FormContainer extends Component {
         super(props);
         this.state = {
             nombre: "",
+            nombreValidate: false,
             telefono: "",
+            telefonoValidate: false,
             correo: "",
+            correoValidate: false,
             rut: "",
+            rutValidate: false,
             alerta: {
                 show: false,
                 msj: '',
@@ -49,7 +53,7 @@ class FormContainer extends Component {
     }
 
     requiredFields = () => {
-        return (this.state.nombre && this.state.telefono && this.state.correo && this.state.rut)? true : false;
+        return (this.state.nombreValidate && this.state.telefonoValidate && this.state.correoValidate && this.state.rutValidate)? true : false;
     }
 
     handleSubmit = async (event) => {
@@ -82,7 +86,7 @@ class FormContainer extends Component {
                 correo: '',
                 alerta: {
                     show: true,
-                    msj: 'Todos los campos son requeridos.',
+                    msj: 'Existen campos que no cumple con lo requerido, favor seguir los Ej.',
                     variant: 'danger'
                 }
             });
@@ -90,7 +94,7 @@ class FormContainer extends Component {
     }
 
     render() {
-        const { nombre, telefono, correo, rut, alerta } = this.state;
+        const { nombre, nombreValidate, telefono, telefonoValidate, correo, correoValidate, rut, rutValidate, alerta } = this.state;
         return (
             <div style={StyleBackground}>
                 <Nav style={{background: `white`}}>
@@ -122,6 +126,10 @@ class FormContainer extends Component {
                                     onChange={(nombre, e) => {
                                         this.setState({ nombre });
                                     }}
+                                    validate={nombreValidate}
+                                    validationCallback={res =>{
+                                        this.setState({ nombreValidate: !res })
+                                    }}
                                     onBlur={e => {}} 
                                     validationOption={{
                                         name: "Nombre",
@@ -143,6 +151,10 @@ class FormContainer extends Component {
                                     onChange={(telefono, e) => {
                                         this.setState({ telefono });
                                     }}
+                                    validate={telefonoValidate}
+                                    validationCallback={res =>
+                                        this.setState({ telefonoValidate: !res })
+                                    }
                                     onBlur={e => {}} 
                                     validationOption={{
                                         name: "Teléfono",
@@ -172,7 +184,11 @@ class FormContainer extends Component {
                                     placeholder="Ej. correo@gmail.com"
                                     onChange={(correo, e) => {
                                         this.setState({ correo });
-                                    }} 
+                                    }}
+                                    validate={correoValidate}
+                                    validationCallback={res =>
+                                        this.setState({ correoValidate: !res })
+                                    }
                                     onBlur={e => {}}
                                     validationOption={{
                                         name: "Correo",
@@ -201,6 +217,10 @@ class FormContainer extends Component {
                                     onChange={(rut, e) => {
                                         this.setState({ rut });
                                     }}
+                                    validate={rutValidate}
+                                    validationCallback={res =>
+                                        this.setState({ rutValidate: !res })
+                                    }
                                     onBlur={e => {}} 
                                     validationOption={{
                                         name: "Rut", 
@@ -219,7 +239,8 @@ class FormContainer extends Component {
                             </Form.Group>
                         </Form.Row>
                         <Button as={Col}
-                            variant="success" 
+                            variant="success"
+                            type="submit" 
                             onClick={this.handleSubmit}
                             size="lg"
                         >
