@@ -13,7 +13,9 @@ var StyleBackground = {
     height: `-webkit-fill-available`,
     color: `white`
 };
-
+var StyleRed = {
+    color: `#c76d7c`
+}
 
 class FormContainer extends Component {
     
@@ -109,7 +111,7 @@ class FormContainer extends Component {
                     <Form>
                         <Form.Row>
                             <Form.Group as={Col} controlId="nombre" md={12} lg={6}>
-                            <Form.Label>Nombre</Form.Label>
+                            <Form.Label>Nombre <span style={StyleRed}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="1"
                                     id={"nombre"}
@@ -130,7 +132,7 @@ class FormContainer extends Component {
                                 />
                             </Form.Group>
                             <Form.Group as={Col} controlId="telefono" md={12} lg={6}>
-                                <Form.Label>Teléfono</Form.Label>
+                                <Form.Label>Teléfono <span style={StyleRed}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="2"
                                     id={"telefono"}
@@ -160,7 +162,7 @@ class FormContainer extends Component {
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} controlId="correo" md={12} lg={6}>
-                                <Form.Label>Correo</Form.Label>
+                                <Form.Label>Correo <span style={StyleRed}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="1"
                                     id={"correo"}
@@ -188,7 +190,7 @@ class FormContainer extends Component {
                                 />
                             </Form.Group> 
                             <Form.Group as={Col} controlId="rut" md={12} lg={6}>
-                            <Form.Label>RUT</Form.Label>
+                            <Form.Label>RUT <span style={StyleRed}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="1"
                                     id={"rut"}
