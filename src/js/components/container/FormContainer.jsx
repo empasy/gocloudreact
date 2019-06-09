@@ -4,6 +4,8 @@ import { Form, Container, Row, Col, Button, Nav, Alert, Image } from 'react-boot
 import Background from '../../../images/background-phone.jpg'; 
 import cpech from '../../../images/Imagen1-620x264.png'
 import 'regenerator-runtime/runtime';
+import { Textbox } from "react-inputs-validation";
+import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
 var StyleBackground = {
     backgroundImage: `url(${Background})`,
@@ -106,43 +108,112 @@ class FormContainer extends Component {
                     </Row>
                     <Form>
                         <Form.Row>
-                            <Form.Group as={Col} controlId="nombre" xs={12} sm={6}>
-                                <Form.Label>Nombre</Form.Label> 
-                                <Form.Control
+                            <Form.Group as={Col} controlId="nombre" md={12} lg={6}>
+                            <Form.Label>Nombre</Form.Label>
+                                <Textbox
+                                    tabIndex="1"
+                                    id={"nombre"}
+                                    name="nombre" 
                                     type="text"
-                                    placeholder="Ej. Jose Canseco"
                                     value={nombre}
-                                    onChange={this.handleChange}
-                                ></Form.Control>
+                                    placeholder="Ej. Jose Canseco"
+                                    onChange={(nombre, e) => {
+                                        this.setState({ nombre });
+                                    }}
+                                    onBlur={e => {}} 
+                                    validationOption={{
+                                        name: "Nombre",
+                                        check: true,
+                                        required: true,
+                                        customFunc: true
+                                    }}
+                                />
                             </Form.Group>
-                            <Form.Group as={Col} controlId="telefono" xs={12} sm={6}>
+                            <Form.Group as={Col} controlId="telefono" md={12} lg={6}>
                                 <Form.Label>Teléfono</Form.Label>
-                                <Form.Control
+                                <Textbox
+                                    tabIndex="2"
+                                    id={"telefono"}
+                                    name="telefono"
                                     type="text"
-                                    placeholder="Ej. +569 3772 93076"
                                     value={telefono}
-                                    onChange={this.handleChange}
-                                ></Form.Control>
+                                    placeholder="Ej. +569 3772 93076"
+                                    onChange={(telefono, e) => {
+                                        this.setState({ telefono });
+                                    }}
+                                    onBlur={e => {}} 
+                                    validationOption={{
+                                        name: "Teléfono",
+                                        check: true,
+                                        required: true,
+                                        customFunc: telefono => {
+                                            const reg = /^(\+?56)?(\s?)(0?9)(\s?)[98765]\d{7}$/;
+                                            if (reg.test(String(telefono).toLowerCase())) {
+                                                return true;
+                                            } else {
+                                                return "Ingresa un teléfono válido.";
+                                            }
+                                        }
+                                    }}
+                                />
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
-                            <Form.Group as={Col} controlId="correo" xs={12} sm={6}>
+                            <Form.Group as={Col} controlId="correo" md={12} lg={6}>
                                 <Form.Label>Correo</Form.Label>
-                                <Form.Control
-                                    type="text"
+                                <Textbox
+                                    tabIndex="1"
+                                    id={"correo"}
+                                    name="correo" 
+                                    type="text" 
+                                    value={correo} 
                                     placeholder="Ej. correo@gmail.com"
-                                    value={correo}
-                                    onChange={this.handleChange}
-                                ></Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} controlId="rut" xs={12} sm={6}>
-                                <Form.Label>RUT</Form.Label>
-                                <Form.Control
+                                    onChange={(correo, e) => {
+                                        this.setState({ correo });
+                                    }} 
+                                    onBlur={e => {}}
+                                    validationOption={{
+                                        name: "Correo",
+                                        check: true,
+                                        required: true,
+                                        customFunc: correo => {
+                                            const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                            if (reg.test(String(correo).toLowerCase())) {
+                                                return true;
+                                            } else {
+                                                return "Ingresa un mail válido.";
+                                            }
+                                        }
+                                    }}
+                                />
+                            </Form.Group> 
+                            <Form.Group as={Col} controlId="rut" md={12} lg={6}>
+                            <Form.Label>RUT</Form.Label>
+                                <Textbox
+                                    tabIndex="1"
+                                    id={"rut"}
+                                    name="rut"
                                     type="text"
-                                    placeholder="Ej. 26.492.283-1"
                                     value={rut}
-                                    onChange={this.handleChange}
-                                ></Form.Control>
+                                    placeholder="Ej. 26.492.283-1"
+                                    onChange={(rut, e) => {
+                                        this.setState({ rut });
+                                    }}
+                                    onBlur={e => {}} 
+                                    validationOption={{
+                                        name: "Rut", 
+                                        check: true, 
+                                        required: true, 
+                                        customFunc: rut => {
+                                            const reg = /^\d{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}$/;
+                                            if (reg.test(String(rut).toLowerCase())) {
+                                                return true;
+                                            } else {
+                                                return "Ingresa un rut válido.";
+                                            }
+                                        }
+                                    }}
+                                />
                             </Form.Group>
                         </Form.Row>
                         <Button as={Col}
