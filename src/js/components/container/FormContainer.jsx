@@ -11,9 +11,7 @@ const Styles = {
     styleBackground : {
         backgroundImage: `url(${Background})`,
         backgroundSize: `cover`,
-        height: `-webkit-fill-available`,
-        backgroundAttachment: `fixed`,
-        
+        minHeight: `-webkit-fill-available`,
         color: `white`
     },
     redColor : {
