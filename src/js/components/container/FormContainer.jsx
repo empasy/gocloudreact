@@ -7,15 +7,32 @@ import 'regenerator-runtime/runtime';
 import { Textbox } from "react-inputs-validation";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
-var StyleBackground = {
-    backgroundImage: `url(${Background})`,
-    backgroundSize: `cover`,
-    height: `-webkit-fill-available`,
-    color: `white`
+const Styles = {
+    styleBackground : {
+        backgroundImage: `url(${Background})`,
+        backgroundSize: `cover`,
+        height: `-webkit-fill-available`,
+        backgroundAttachment: `fixed`,
+        
+        color: `white`
+    },
+    redColor : {
+        color: `#c76d7c`
+    },
+    rowContainer: {
+        padding: `0px 40px`
+    },
+    centerText: {
+        textAlign: `center`
+    },
+    cpech: {
+        width: '150px',
+        paddingLeft: `40px`
+    },
+    backgroundWhite: {
+        background: `white`
+    }
 };
-var StyleRed = {
-    color: `#c76d7c`
-}
 
 class FormContainer extends Component {
     
@@ -109,26 +126,26 @@ class FormContainer extends Component {
     render() {
         const { nombre, nombreValidate, telefono, telefonoValidate, correo, correoValidate, rut, rutValidate, alerta } = this.state;
         return (
-            <div style={StyleBackground}>
-                <Nav style={{background: `white`}}>
+            <div style={Styles.styleBackground}>
+                <Nav style={Styles.backgroundWhite}>
                     <Container>
-                        <Image src={cpech} style={{width: '110px'}} />
+                        <Image src={cpech} style={Styles.cpech} />
                     </Container>
                 </Nav>
                 <Container>
-                    <Row style={{textAlign : 'center'}}>
+                    <Row style={Styles.centerText}>
                         <Col>
                             <h1>Cursos de</h1>
                             <h1>Verano +NEM</h1>
                         </Col> 
-                        <Col xs={{span:6, offset: 3}} sm={{span:12, offset:0}}>
+                        <Col xs={{span:8, offset: 2}} sm={{span:12, offset:0}}>
                             <h6>No dejes pasar esta increíble oportunidad. Inscríbete acá</h6>
                         </Col>
                     </Row>
-                    <Form>
-                        <Form.Row>
+                    <Form style={Styles.rowContainer}>
+                        <Form.Row >
                             <Form.Group as={Col} controlId="nombre" md={12} lg={6}>
-                            <Form.Label>Nombre <span style={StyleRed}>*</span></Form.Label>
+                            <Form.Label>Nombre <span style={Styles.redColor}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="1"
                                     id={"nombre"}
@@ -153,7 +170,7 @@ class FormContainer extends Component {
                                 />
                             </Form.Group>
                             <Form.Group as={Col} controlId="telefono" md={12} lg={6}>
-                                <Form.Label>Teléfono <span style={StyleRed}>*</span></Form.Label>
+                                <Form.Label>Teléfono <span style={Styles.redColor}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="2"
                                     id={"telefono"}
@@ -187,7 +204,7 @@ class FormContainer extends Component {
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} controlId="correo" md={12} lg={6}>
-                                <Form.Label>Correo <span style={StyleRed}>*</span></Form.Label>
+                                <Form.Label>Correo <span style={Styles.redColor}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="1"
                                     id={"correo"}
@@ -219,7 +236,7 @@ class FormContainer extends Component {
                                 />
                             </Form.Group> 
                             <Form.Group as={Col} controlId="rut" md={12} lg={6}>
-                            <Form.Label>RUT <span style={StyleRed}>*</span></Form.Label>
+                            <Form.Label>RUT <span style={Styles.redColor}>*</span></Form.Label>
                                 <Textbox
                                     tabIndex="1"
                                     id={"rut"}
@@ -251,9 +268,9 @@ class FormContainer extends Component {
                                 />
                             </Form.Group>
                         </Form.Row>
-                        <Button as={Col}
+                        <Button
+                            as={Col} 
                             variant="success"
-                            type="submit" 
                             onClick={this.handleSubmit}
                             size="lg"
                         >
