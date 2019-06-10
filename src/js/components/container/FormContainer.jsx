@@ -29,6 +29,9 @@ const Styles = {
     },
     backgroundWhite: {
         background: `white`
+    },
+    Width100: {
+        width: '100%'
     }
 };
 
@@ -251,7 +254,7 @@ class FormContainer extends Component {
                             </Form.Group>
                         </Form.Row>
                         <Button
-                            as={Col} 
+                            style={Styles.Width100}
                             variant="success"
                             onClick={this.handleSubmit}
                             size="lg"
